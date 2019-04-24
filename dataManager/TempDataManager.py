@@ -4,11 +4,13 @@ import errno
 import json
 from datetime import datetime
 
+from dataManager.DataManager import DataManager
 
-class TempDataManager:
+class TempDataManager(DataManager):
 
     def __init__(self):
         self.urlBase = 'http://kocher.es/meteotemplate/pages/station/climateTGraphMonthAjax.php?q=avg&month='
+        self.targetDataFile = 'data/temperature/temp_by_day.json'
 
     def downloadData(self):
         for j in range(1, 13):
@@ -48,5 +50,5 @@ class TempDataManager:
 
         print(yearsDict)
 
-        with open('data/temperature/temp_by_day.json', "a") as myfile:
+        with open(self.targetDataFile, "a") as myfile:
             myfile.write(json.dumps(yearsDict))

@@ -69,5 +69,5 @@ class BikeDataManager:
 
         print(yearsDict)
 
-        with open('bikes/bikes_count_by_day.json', "a") as myfile:
+        with open('data/bikes/bikes_count_by_day.json', "a") as myfile:
             myfile.write(json.dumps(yearsDict))

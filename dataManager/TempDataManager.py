@@ -2,9 +2,8 @@ import urllib.request
 import os
 import errno
 import json
-from datetime import datetime
-
 from dataManager.DataManager import DataManager
+
 
 class TempDataManager(DataManager):
 

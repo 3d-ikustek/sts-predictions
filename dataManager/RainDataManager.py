@@ -2,10 +2,10 @@ import urllib.request
 import os
 import errno
 import json
-from datetime import datetime
+from dataManager.DataManager import DataManager
 
 
-class RainDataManager:
+class RainDataManager(DataManager):
 
     def __init__(self):
         self.urlBase = 'http://kocher.es/meteotemplate/pages/station/climateRGraphMonthAjax.php?month='

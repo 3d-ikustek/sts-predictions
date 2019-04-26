@@ -4,12 +4,15 @@ import errno
 import json
 from datetime import datetime
 
+from dataManager.DataManager import DataManager
 
-class BikeDataManager:
+
+class BikeDataManager(DataManager):
 
     def __init__(self):
         self.hostUrl = 'https://www.donostia.eus'
         self.urlBase = '/info/ciudadano/Videowall.nsf/movimientos.xsp?'
+        self.targetDataFile = 'data/bikes/bikes_count_by_day.json'
 
     def downloadData(self):
         for i in range(2015, 2020):
@@ -49,7 +52,7 @@ class BikeDataManager:
                 print(str(month))
 
                 with open('data/bikes/' + str(year) + '/' + str(month).zfill(2) + '_bikes.json') as json_file:
-                    if year == 2019 and month > 3:
+                    if year == 2019 and month > 4:
                         None
                     else:
                         data = json.load(json_file)
@@ -69,5 +72,5 @@ class BikeDataManager:
 
         print(yearsDict)
 
-        with open('data/bikes/bikes_count_by_day.json', "a") as myfile:
+        with open(self.targetDataFile, "a") as myfile:
             myfile.write(json.dumps(yearsDict))

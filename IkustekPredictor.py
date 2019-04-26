@@ -17,11 +17,11 @@ bikeDM = BikeDataManager()
 
 #rainDM.downloadData()
 #tempDM.downloadData()
-#bikeDM.downloadData()
+bikeDM.downloadData()
 
 #rainDM.workData()
 #tempDM.workData()
-#bikeDM.workData()
+bikeDM.workData()
 
 tempDM.loadData()
 

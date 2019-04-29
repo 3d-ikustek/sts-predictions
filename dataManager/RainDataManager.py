@@ -9,6 +9,7 @@ class RainDataManager(DataManager):
 
     def __init__(self):
         self.urlBase = 'http://kocher.es/meteotemplate/pages/station/climateRGraphMonthAjax.php?month='
+        self.targetDataFile = 'data/rain/rain_by_day.json'
 
     def downloadData(self):
         for j in range(1, 13):
@@ -48,5 +49,5 @@ class RainDataManager(DataManager):
 
         print(yearsDict)
 
-        with open('data/rain/rain_by_day.json', "a") as myfile:
+        with open(self.targetDataFile, "a") as myfile:
             myfile.write(json.dumps(yearsDict))

@@ -44,6 +44,7 @@ class BikeDataManager(DataManager):
                         myfile.write(url.read().decode('utf-8'))
 
     def workData(self):
+        today = datetime.today()
         yearsDict = {}
         for year in range(2015, 2020):
             print(str(year))
@@ -52,7 +53,7 @@ class BikeDataManager(DataManager):
                 print(str(month))
 
                 with open('data/bikes/' + str(year) + '/' + str(month).zfill(2) + '_bikes.json') as json_file:
-                    if year == 2019 and month > 4:
+                    if year == today.year and month > today.month:
                         None
                     else:
                         data = json.load(json_file)

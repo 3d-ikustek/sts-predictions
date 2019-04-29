@@ -17,4 +17,8 @@ class DataManager:
             self.data = json.load(json_file)
 
     def getDayValue(self, oneDate):
-        return self.data[str(oneDate.year)][str(oneDate.month)][str(oneDate.day)]
+        try:
+            return self.data[str(oneDate.year)][str(oneDate.month)][str(oneDate.day)]
+        except:
+            print("No data for" + str(oneDate))
+            return 0

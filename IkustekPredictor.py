@@ -15,13 +15,17 @@ rainDM = RainDataManager()
 tempDM = TempDataManager()
 bikeDM = BikeDataManager()
 
-#rainDM.downloadData()
-#tempDM.downloadData()
+tempDM.downloadDataMin(curMonth=4)
+
+'''
+rainDM.downloadData()
+tempDM.downloadData()
 bikeDM.downloadData()
 
-#rainDM.workData()
-#tempDM.workData()
+rainDM.workData()
+tempDM.workData()
 bikeDM.workData()
+
 
 tempDM.loadData()
 
@@ -39,3 +43,4 @@ for i in range(0, futureStepsNum):
     futureTemp.append(temp)
 
 print(futureTemp)
+'''

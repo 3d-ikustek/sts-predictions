@@ -4,7 +4,6 @@ import errno
 import json
 from datetime import date
 
-
 class DataManager:
 
     def __init__(self):

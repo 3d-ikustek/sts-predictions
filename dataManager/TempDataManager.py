@@ -2,6 +2,8 @@ import urllib.request
 import os
 import errno
 import json
+from datetime import datetime
+
 from dataManager.DataManager import DataManager
 
 
@@ -11,20 +13,29 @@ class TempDataManager(DataManager):
         self.urlBase = 'http://kocher.es/meteotemplate/pages/station/climateTGraphMonthAjax.php?q=avg&month='
         self.targetDataFile = 'data/temperature/temp_by_day.json'
 
+    def downloadDataMin(self, curMonth=None):
+        month = datetime.today().month
+        if(curMonth is not None):
+            month = curMonth
+
+        filename ='data/temperature/' + str(month).zfill(2) + "_temp.json"
+        if not os.path.exists(os.path.dirname(filename)):
+            try:
+                os.makedirs(os.path.dirname(filename))
+            except OSError as exc:
+                if exc.errno != errno.EEXIST:
+                    raise
+        urlStr = self.urlBase + str(month)
+        with open(filename, "w") as myfile:
+            myfile.truncate()
+            with urllib.request.urlopen(urlStr) as url:
+                # data = json.loads(url.read().decode())
+                myfile.write(url.read().decode('utf-8'))
+
+
     def downloadData(self):
         for j in range(1, 13):
-            filename ='data/temperature/' + str(j).zfill(2) + "_temp.json"
-            if not os.path.exists(os.path.dirname(filename)):
-                try:
-                    os.makedirs(os.path.dirname(filename))
-                except OSError as exc:
-                    if exc.errno != errno.EEXIST:
-                        raise
-            urlStr = self.urlBase + str(j)
-            with open(filename, "a") as myfile:
-                with urllib.request.urlopen(urlStr) as url:
-                    # data = json.loads(url.read().decode())
-                    myfile.write(url.read().decode('utf-8'))
+            self.downloadDataMin(curMonth=j)
 
     def workData(self):
         yearsDict = {}
@@ -50,4 +61,5 @@ class TempDataManager(DataManager):
         print(yearsDict)
 
         with open(self.targetDataFile, "a") as myfile:
+            myfile.truncate()
             myfile.write(json.dumps(yearsDict))

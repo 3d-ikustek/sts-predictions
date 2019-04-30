@@ -15,16 +15,21 @@ rainDM = RainDataManager()
 tempDM = TempDataManager()
 bikeDM = BikeDataManager()
 
-tempDM.downloadDataMin(curMonth=4)
+'''
+rainDM.downloadDataMin()
+tempDM.downloadDataMin()
+bikeDM.downloadDataMin()
+'''
+rainDM.workData()
+tempDM.workData()
+bikeDM.workData()
 
 '''
 rainDM.downloadData()
 tempDM.downloadData()
 bikeDM.downloadData()
 
-rainDM.workData()
-tempDM.workData()
-bikeDM.workData()
+
 
 
 tempDM.loadData()

@@ -86,6 +86,6 @@ class BikeDataManager(DataManager):
 
         print(yearsDict)
 
-        with open(self.targetDataFile, "a") as myfile:
+        with open(self.targetDataFile, "w") as myfile:
             myfile.truncate()
             myfile.write(json.dumps(yearsDict))

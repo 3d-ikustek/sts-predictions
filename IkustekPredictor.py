@@ -16,10 +16,11 @@ tempDM = TempDataManager()
 bikeDM = BikeDataManager()
 
 '''
+'''
 rainDM.downloadDataMin()
 tempDM.downloadDataMin()
 bikeDM.downloadDataMin()
-'''
+
 rainDM.workData()
 tempDM.workData()
 bikeDM.workData()
